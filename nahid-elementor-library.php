@@ -108,12 +108,6 @@ final class Nahid_Elementor_Library {
 			return;
 		}
 
-		// Require Library Classes
-		require_once plugin_dir_path( __FILE__ ) . 'includes/class-template-importer.php';
-		if ( is_admin() ) {
-			require_once plugin_dir_path( __FILE__ ) . 'includes/class-admin-menu.php';
-		}
-
 		// Add Plugin actions
 		add_action( 'elementor/elements/categories_registered', [ $this, 'add_elementor_widget_categories' ] );
 		add_action( 'elementor/widgets/register', [ $this, 'init_widgets' ] );
