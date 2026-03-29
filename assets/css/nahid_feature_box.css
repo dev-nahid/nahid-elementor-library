@@ -1,0 +1,11 @@
+/* 
+ * Nahid Feature Box Stylesheet
+ * 
+ * This file is dynamically compiled and loaded only on pages where the Feature Box is present.
+ */
+.nahid-feature-box {
+    transition: all 0.3s ease-in-out;
+}
+.nahid-feature-box:hover {
+    transform: translateY(-5px);
+}
