@@ -1,0 +1,67 @@
+/* 
+ * Nahid Marquee (Infinite Loop) - High Performance Stylesheet
+ * 
+ * Powered by pure CSS properties natively offloaded to the GPU.
+ */
+
+.nahid-marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    width: 100%;
+    /* Variables mapped directly from Elementor DOM injection */
+    gap: var(--gap, 30px);
+}
+
+.nahid-marquee-content {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 100%;
+    gap: var(--gap, 30px);
+    
+    /* Reset standard theme lists */
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+
+    /* The core engine */
+    animation: nahid-scroll var(--speed, 20s) linear infinite;
+    animation-direction: var(--direction, normal);
+}
+
+.nahid-marquee[data-hover="yes"]:hover .nahid-marquee-content {
+    animation-play-state: paused;
+}
+
+.nahid-marquee-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.nahid-marquee-item.type-image img {
+    /* Base fallback, typically overridden by Elementor Slider Controls */
+    max-height: 100px; 
+    width: auto;
+    object-fit: contain;
+}
+
+.nahid-marquee-item.type-video video {
+    max-height: 100px;
+    width: auto;
+    object-fit: cover;
+    pointer-events: none; /* Prevents user interacting with standard HTML video APIs and halting the slider loop */
+}
+
+@keyframes nahid-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        /* Translates physically out of viewport offset cleanly mathematically alongside its gap space */
+        transform: translateX(calc(-100% - var(--gap, 30px)));
+    }
+}
